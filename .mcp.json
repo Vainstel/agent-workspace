@@ -1,0 +1,45 @@
+{
+  "_notes": {
+    "usage": "Workspace MCP servers. Keep only what you use. This file is tracked, so for token-based servers env-var references (${VAR}) are preferred; a literal token is acceptable only if this workspace repo stays private. Use your env file to set up required ENV.",
+    "docker": "Docker MCP Toolkit gateway — aggregates servers enabled in Docker Desktop → MCP Toolkit. Requires Docker Desktop.",
+    "idea": "IntelliJ built-in MCP server. Enable in IDE: Settings → Tools → MCP Server. Port = built-in web server port + 1000 (default 63342 → 64342).",
+    "atlassian": "Official Atlassian remote MCP (Jira/Confluence/Compass), OAuth 2.1 — authenticate via /mcp on first use.",
+    "datadog": "Official Datadog remote MCP, OAuth. Alternatively install the datadog Claude Code plugin.",
+    "github": "Official GitHub remote MCP, OAuth — authenticate via /mcp on first use. For GitLab instead: @zereight/mcp-gitlab (stdio, needs a PAT).",
+    "playwright": "Official Microsoft Playwright MCP — gives the agent a real browser (accessibility-tree based) to drive and verify UI. No tokens; needs Node."
+  },
+  "mcpServers": {
+    "docker": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["mcp", "gateway", "run"],
+      "env": {}
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "idea": {
+      "type": "sse",
+      "url": "http://127.0.0.1:64342/sse"
+    },
+    "datadog": {
+      "type": "http",
+      "url": "https://mcp.datadoghq.com/v1/mcp"
+    },
+    "atlassian": {
+      "type": "http",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,49 @@
+# ── Per-org blocks ─────────────────────────────────────────────
+# Track only org- and product-level CLAUDE.md; ignore repo contents.
+# Copy this block for every org you add.
+
+org_1/**
+!org_1/CLAUDE.md
+!org_1/*/
+!org_1/*/CLAUDE.md
+
+org_2/**
+!org_2/CLAUDE.md
+!org_2/*/
+!org_2/*/CLAUDE.md
+
+private/**
+!private/CLAUDE.md
+!private/*/
+!private/*/CLAUDE.md
+
+# If a product dir is itself a git repo (multi-repo composite), ignore it fully instead:
+# <org>/<composite-product-repo>/
+
+# ── Scratch / personal (never tracked) ─────────────────────────
+TMP/*
+!TMP/.gitkeep
+archive/*
+!archive/.gitkeep
+
+# workflow/ is personal operator notes — track only the empty skeleton
+workflow/**
+!workflow/CLAUDE.md
+!workflow/*/
+!workflow/*/.gitkeep
+
+# ── Local config ───────────────────────────────────────────────
+# .mcp.json IS tracked — prefer ${ENV_VAR} references for tokens (literals OK only while the repo stays private)
+.claude/settings.local.json
+CLAUDE.local.md
+**/CLAUDE.local.md
+
+# ── OS / IDE noise ─────────────────────────────────────────────
+.DS_Store
+.idea/
+*.iml
+
+# ── Template mocks — DELETE this whole section together with org_1/ and org_2/ ──
+# Ships the repo-level mock skeletons with the template (real repo contents are never tracked).
+!org_1/product_1/*/
+!org_1/product_1/*/CLAUDE.md
