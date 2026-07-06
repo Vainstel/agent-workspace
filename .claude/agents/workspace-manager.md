@@ -45,7 +45,7 @@ Input: a local path, or a GitHub/GitLab URL (clone it into place once the destin
 1. Check whether the repo already has a `CLAUDE.md` / `CLAUDE.local.md`.
 2. Tell the user: "I'll analyze it briefly to decide where it fits." Run the analysis — subagents for anything sizable (README, build files, module layout, domain).
 3. Propose placement: match against existing orgs/products; if it clearly belongs, propose that. If ambiguous, ask — offering existing options AND "new product/org" with 2–3 name suggestions. A standalone mono-project may go directly under an org with no product layer (exception — don't invent a product wrapper around a single repo).
-4. Move/clone the repo into place; update the root `.gitignore` if a new org/product appeared.
+4. Place the repo; update the root `.gitignore` if a new org/product appeared. For a repo that already exists on this machine: **copy, don't move** — leave the original untouched until the user verifies the new location and deletes it themselves. Carry over the local, usually-gitignored setup so the copy stays runnable: IDE settings/run configurations (`.idea/`, `.vscode/`, `*.iml`), local overrides/env files (`.env*`, `*.local.*`, `overrides.properties`), `CLAUDE.local.md` — and mention what you carried over.
 5. CLAUDE.md handling:
    - Missing → offer to create via `claudemd-author`.
    - Present but stale/thin (judge by its date stamp and your analysis) → offer `claudemd-actualize`.

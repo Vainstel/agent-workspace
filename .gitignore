@@ -23,6 +23,7 @@ private/**
 # ── Scratch / personal (never tracked) ─────────────────────────
 TMP/*
 !TMP/.gitkeep
+!TMP/workspace-structure.png
 archive/*
 !archive/.gitkeep
 

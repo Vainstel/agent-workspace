@@ -6,7 +6,7 @@ A template for a **Claude Code entry-point workspace**: one directory that holds
 
 The point: an agent started here quickly finds what it needs to work on, orients itself across the tree, and understands how the repos of a product relate to each other and how products relate between themselves — no repeated intro prompts to bring it up to speed each session.
 
-![Workspace structure](docs/workspace-structure.png)
+![Workspace structure](TMP/workspace-structure.png)
 
 Context is layered — the agent reads the `CLAUDE.md` chain top-down along its task path and finds the right depth at the right place, with nothing duplicated:
 
