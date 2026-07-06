@@ -28,7 +28,7 @@ To the right of the tree sit the helper dirs: `.claude/` (skills, commands, agen
 | Path | Purpose |
 |---|---|
 | `CLAUDE.md` | Workspace-level rules — the agent's starting point |
-| `.claude/` | A starter set of useful skills, commands and agents. The key skills are `claudemd-author` / `claudemd-actualize` — creating and refreshing `CLAUDE.md`/`CLAUDE.local.md` at every level; the `workspace-manager` agent owns them all, but they can be invoked explicitly without it. `workspace-update` (stub) will refresh the workspace itself from this template. |
+| `.claude/` | A starter set of useful skills, commands and agents. The key skills are `claudemd-author` / `claudemd-actualize` — creating and refreshing `CLAUDE.md`/`CLAUDE.local.md` at every level; the `workspace-manager` agent owns them all, but they can be invoked explicitly without it. `workspace-update` refreshes the workspace itself from this template. |
 | `.mcp.json` | Default MCP servers (docker, context7, idea, datadog, atlassian, github, playwright) — trim to what you use; prefer `${ENV_VAR}` for tokens |
 | `workflow/` | Operator's notes for directing the agent (`task/` briefs, `notes/`) — agents stay out unless pointed at a file |
 | `tools/` | Small standalone scripts useful to you or the agent |
@@ -44,6 +44,6 @@ This workspace repo tracks **only** the `CLAUDE.md` files down to product level 
 
 - **`claudemd-author`** — creates `CLAUDE.md` at any level (and `CLAUDE.local.md`) with the fixed per-level section structure, stamped `*Actualized: YYYY-MM-DD*`.
 - **`claudemd-actualize`** — refreshes an existing file against reality since its date stamp (commits, code, your org's docs via MCP): removes stale, inserts current truth, updates the stamp.
-- **`workspace-update`** — refreshes the workspace itself from this template (skills, commands, agents, base instructions) without touching your content. Stub for now.
+- **`workspace-update`** — refreshes the workspace itself from this template (skills, commands, agents, base instructions) without touching your content; conflicts are shown, never auto-resolved.
 
 All context-file work goes through these skills, so the structure stays consistent no matter who runs it.
