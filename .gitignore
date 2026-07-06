@@ -48,3 +48,6 @@ CLAUDE.local.md
 # Ships the repo-level mock skeletons with the template (real repo contents are never tracked).
 !org_1/product_1/*/
 !org_1/product_1/*/CLAUDE.md
+# Example per-task note (workflow/task/<TICKET>/ convention) — delete with the other mocks
+!workflow/task/TASK-123/
+!workflow/task/TASK-123/TASK-123.md

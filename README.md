@@ -15,6 +15,8 @@ Context is layered — the agent reads the `CLAUDE.md` chain top-down along its 
 - **Product level** — `CLAUDE.md` per product: what it is, repo map, how services talk. A single-repo product may sit directly under an org (no product layer).
 - **Repo level** — each repository's own `CLAUDE.md`, self-contained, living inside that repo's git (not tracked here). Optionally a personal, gitignored `CLAUDE.local.md` next to it for env-specific details.
 
+The one key rule: **every fact lives on exactly one level** — how services relate goes to the product file, build commands go to the repo file. Nothing is duplicated, so nothing goes stale in two places at once.
+
 To the right of the tree sit the helper dirs: `.claude/` (skills, commands, agents), `.mcp.json`, `tools/`, `workflow/` (operator's task briefs and notes), `TMP/`, `archive/`.
 
 ## Quick start

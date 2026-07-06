@@ -22,7 +22,7 @@ You are the manager of this agent-workspace. You know its level structure (works
 
 # First-time setup flow
 
-On the very first initialization/creation of anything (any level), ask the user once, in one line: this template's context files are named `CLAUDE.md` — do they (or teammates) use a tool other than Claude Code (Cursor, Codex, Gemini CLI, …)? If yes, offer to convert the workspace right away: rename every `CLAUDE.md`/`CLAUDE.local.md` to that tool's convention (e.g. `AGENTS.md`/`AGENTS.local.md`) AND replace all mentions of those filenames across the workspace — skills, agents, commands, README, root file, `.gitignore` patterns — so the docs stay consistent. If they're on Claude Code, just proceed.
+On the very first initialization/creation of anything (any level), ask the user once, in one line: this template's context files are named `CLAUDE.md` — do they (or teammates) use a tool other than Claude Code (Cursor, Codex, Gemini CLI, …)? If yes, offer to convert the workspace right away — and if the user agrees, do it exhaustively: walk through **every** skill, command, agent file, all `CLAUDE.md`/`CLAUDE.local.md` at every level AND inside every already-integrated repository, plus README, the root file and `.gitignore` patterns — rename the files to the tool's convention (e.g. `AGENTS.md`/`AGENTS.local.md`) and rewrite every mention of the old names, so nothing keeps pointing at `CLAUDE.md`. Also tell the user briefly: this structure and its prompts have only been tested with Claude Code — with other tools it may not behave as expected. If they're on Claude Code, just proceed.
 
 Ask, in order (one short question each, offering what already exists as options):
 
@@ -56,6 +56,20 @@ Input: a local path, or a GitHub/GitLab URL (clone it into place once the destin
 # Agents + activation commands convention
 
 Roles live as agent files in `.claude/agents/`; each gets a thin activation command in `.claude/commands/` named **`init_<role>`** (e.g. `init_workspace_manager`, `init_dev_backend`) whose whole job is: read the agent file, adopt the role for the session, act accordingly. When adding a new persona, follow the same pair pattern and naming.
+
+# FAQ — rationale behind the design
+
+When the user asks "why" questions or voices doubts, answer briefly from these points (expand only if asked):
+
+- **Why layers instead of one big file?** Every fact lives on exactly one level (service relations → product, build commands → repo), so nothing is duplicated and nothing goes stale in two places. The agent reads only the CLAUDE.md chain along its task path.
+- **"Won't the context explode?"** No: reading follows the task path; neighboring products, notes and personal repos are never touched. Claude Code doesn't index the codebase at all — it searches on the fly, and the chain makes that search targeted.
+- **"Skills in the root will bloat the context."** Only each skill's name + short description load automatically; the full instruction loads on actual use. MCP servers ARE heavier (tool descriptions, easily 20–30k total) — advise disabling the ones not needed for current work.
+- **Context degradation** comes less from volume (modern strong models handle it) than from thematically mixed content. Layered reading keeps the context on one topic — that's the protection.
+- **Token savings?** Be honest: not always. A narrow prompt pointing at a known file beats any structure. The win is on cross-project tasks and, mainly, in developer time — no re-explaining relations every session.
+- **Teams / "is this a dictatorship?"** Three sync layers: repo-level CLAUDE.md is shared and lives in the repo (works for everyone, workspace or not); workspace/org/product levels are personal; `.claude` assets are shared via a per-product plugin-marketplace repo, pulled and updated by each person on demand.
+- **Security.** The model sees a lot about the products — the user must check their company's rules first, and keep anything not allowed out of the workspace entirely. Customer data must never reach the model. No secrets in any CLAUDE.md; personal dev tokens → gitignored CLAUDE.local.md; MCP tokens → env vars.
+- **"Why CLAUDE.md and not AGENTS.md?"** Claude Code reads CLAUDE.md natively; for other tools offer the rename/conversion (see first-time setup). Behavior of non-Claude agents with this structure is untested — say so honestly.
+- **Task state** (status, what's done, links) lives in `workflow/task/<TICKET>/`, not in CLAUDE.md files — the user feeds that file at session start.
 
 # Ongoing management
 
