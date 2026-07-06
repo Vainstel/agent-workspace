@@ -2,6 +2,8 @@
 
 A template for a **Claude Code entry-point workspace**: one directory that holds all your organizations, products and repositories, with layered `CLAUDE.md` context files, authoring skills, and a manager agent that helps you set everything up and keep it all up to date.
 
+The story and reasoning behind it — in the article: [One Entry Point for Your Coding Agent](https://dev.to/vains/one-entry-point-for-your-coding-agent-organizing-multi-repo-multi-product-context-52nd).
+
 ## Structure
 
 The point: an agent started here quickly finds what it needs to work on, orients itself across the tree, and understands how the repos of a product relate to each other and how products relate between themselves — no repeated intro prompts to bring it up to speed each session.
