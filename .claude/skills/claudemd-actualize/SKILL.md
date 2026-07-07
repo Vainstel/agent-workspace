@@ -14,7 +14,7 @@ Goal: bring an existing `CLAUDE.md` in line with how things are **today**. This 
 Bound the search window with the file's `*Actualized: YYYY-MM-DD*` stamp:
 
 1. **Repo commits & code** — primary. `git log --since=<stamp>`: if the commit count is reasonable, go through them and read the changed areas. If there are too many to review individually, don't try — aggregate the touched paths instead (`git log --since=<stamp> --name-only` or `git diff --stat`), see which parts of the app changed most, and analyze the **current state** of those areas. Either way, anything the file names (class/file/flag/command) is a claim it exists — verify by grep/read.
-2. **Org knowledge base** (Confluence/wiki via MCP) — current architecture, process, ownership.
+2. **Org knowledge base** (Confluence/wiki via MCP) — current architecture, process, ownership. Checking it is a **mandatory part of actualization** when the MCP is connected, not a nice-to-have — don't be shy about searching the relevant spaces.
 3. **Chat** (Slack via MCP) — recent decisions, migrations, deprecations, incidents in the relevant channels.
 
 If an MCP for a source isn't connected, offer the user to activate/add it first — it makes the actualization noticeably more reliable; if they decline, proceed with the remaining sources and never guess.
@@ -30,6 +30,7 @@ If an MCP for a source isn't connected, offer the user to activate/add it first 
 7. **Flag the unverifiable.** No access to a source → tell the user instead of guessing.
 8. **Fix ambiguity too.** Vague, contradictory or unactionable instructions you encounter are fair game to tighten.
 9. **CLAUDE.local.md**: same diff approach, but sources are personal — git/code plus the user's own answers (no Confluence/Slack needed). Strip any volatile content that crept in (TODOs, task statuses, current-work paths) — it doesn't belong there (see claudemd-author).
+10. **Composition changed → full re-read, not an appended line.** When the trigger is a repo joining OR leaving a product (added, removed, split, retired), do NOT just add/delete a mention in the repo map. Re-read the whole product file against the new composition: the change may affect "how it fits together", data flows, shared glossary, deploy notes — adjust every spot that referenced the old composition so the doc reads as if written for the current set of repos. Same logic at org level when a product is added or removed.
 
 ## Date stamp
 
@@ -42,4 +43,5 @@ After actualizing, set the top line to today: `*Actualized: YYYY-MM-DD*`. If mis
 3. Build a short diff list: stale / missing / changed / unverifiable.
 4. Apply targeted edits; keep structure and correct parts intact.
 5. Update the stamp.
-6. Report what changed and what you couldn't verify.
+6. Ripple up: after actualizing a repo/product-level file, glance at the CLAUDE.md **one level above** — the changes you just made may have left it stale (repo maps, flows, role descriptions). If so, offer to actualize it too.
+7. Report what changed and what you couldn't verify.

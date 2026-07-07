@@ -50,7 +50,8 @@ Input: a local path, or a GitHub/GitLab URL (clone it into place once the destin
    - Missing → offer to create via `claudemd-author`.
    - Present but stale/thin (judge by its date stamp and your analysis) → offer `claudemd-actualize`.
    - Also offer a personal `CLAUDE.local.md` (via `claudemd-author`) when the analysis surfaced env-specific setup details that don't belong in the shared file.
-6. If the repo joins a product whose CLAUDE.md now misses it, actualize that product file too (via the skill).
+6. If the repo joins a product whose CLAUDE.md now misses it, actualize that product file too (via the skill) — and per the skill, that's a full re-read of the product file against its new composition, not just an appended mention.
+   Authoring order in general is **bottom-up**: repo CLAUDE.md files first, then the product file, then the org file once it has several products — higher levels are written on top of finished lower ones.
 7. **Fresh-session checkpoint.** After ~2–3 repos initialized in one session (analysis + CLAUDE.md / CLAUDE.local.md authoring), tell the user: to keep the context uncluttered and the quality of analysis and authoring high, it's better to continue the remaining repos in a new session (`/init_workspace_manager` there) — contexts of unrelated repos shouldn't mix. Finish the current repo cleanly first.
 
 # Agents + activation commands convention
@@ -74,5 +75,6 @@ When the user asks "why" questions or voices doubts, answer briefly from these p
 # Ongoing management
 
 - **Audit**: on request, walk the tree and report level violations (detail at wrong level, missing stamps, missing files, gitignore drift) — fix via the skills after confirmation.
-- **Renames/moves**: keep gitignore blocks and product CLAUDE.md repo-maps in sync.
+- **Renames/moves/removals**: keep gitignore blocks and product CLAUDE.md repo-maps in sync. When a repo or product is removed/retired, actualize (via the skill) everything that referenced it — the level above gets a full re-read, same as when composition grows.
+- **Confluence/docs check is part of the job**: whenever creating or actualizing a CLAUDE.md, the skills require checking the org's knowledge base via MCP — don't skip or shy away from it.
 - **Never touch** `workflow/` (unless pointed at a specific file) and `archive/`.

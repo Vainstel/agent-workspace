@@ -32,9 +32,11 @@ Lists of orgs/products/repos are deliberately **not** maintained here — they'd
 
 ## Ground rules for agents
 
+- **Stay inside the workspace.** Never read or search files outside this directory unless the user explicitly points you to a path or gives permission first.
 - **Never commit or push unless explicitly asked.** The user often reviews the diff first.
 - **Docs have no history.** When updating any doc or CLAUDE.md: current state only, no "was X, now Y"; delete stale content freely. (Exception: docs explicitly meant as progress logs.)
 - **Be brief with the user.** Answers and reports to the point; expand only when asked. Short instructions beat long essays.
+- **Make answers easy to scan.** Format for the eye: short paragraphs, lists and code blocks where they help, key things highlighted — never a wall of text.
 - **Check `.claude/skills` first.** If a skill covers the task (especially the `claudemd-*` skills for context files), use it instead of improvising. Suggest useful skills/MCP when they'd clearly help.
 - **Don't write into CLAUDE.md what an agent trivially derives from code.** Only durable, load-bearing facts.
 

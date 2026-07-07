@@ -9,6 +9,10 @@ This workspace layers context: **workspace → org → product/team → repo**. 
 
 > The **workspace** level (the root `CLAUDE.md`) is template-owned and rarely changes — edit it only on explicit request, and only its "Ground rules" / "Additional" sections.
 
+## Authoring order — bottom-up
+
+When several levels need files, write them **from the lowest level up**: first the repos, then the product (once its repos are documented), then the org (once it has several products). A higher-level file written on top of finished lower ones describes reality instead of guesses — the product file's repo map and flows come straight from what the repo files established. If circumstances force writing a higher level first, mark mentally what was assumed and revisit it when the lower files appear.
+
 ## Before writing: read the neighbors
 
 Always read the `CLAUDE.md` **one level above** and any **already existing below** your target level. You need to know what's already said to (a) not duplicate it and (b) push each detail to its proper level. If a detail you want to add already lives on another level — leave it there, or move it (never both places).
@@ -91,8 +95,9 @@ Set to today when authoring. It's the baseline that makes future actualization c
 
 1. Identify the level(s) from the path (watch for the single-repo-under-org exception).
 2. Read the neighbor CLAUDE.md files (above + below) and any existing target file.
-3. Check the org's knowledge sources (MCP: Confluence/wiki). If no such MCP is connected, offer the user to activate/add one before you proceed — verified external docs make the result noticeably better; if they decline, continue with repo/code only.
+3. Check the org's knowledge sources (MCP: Confluence/wiki) — a **mandatory part of authoring**, not a nice-to-have: search the relevant spaces/pages for anything useful (architecture, ownership, processes, ADRs) before writing. If no such MCP is connected, offer the user to activate/add one before you proceed — verified external docs make the result noticeably better; if they decline, continue with repo/code only.
 4. Investigate the real repo/code — parallel subagents for multi-repo.
 5. Write only level-appropriate sections; push other detail to its proper level.
 6. Add the date stamp (today).
 7. Self-check: no cross-repo paths, no volatile config data, no historicity, no duplication with neighbor levels, under the size ceiling.
+8. Ripple up: after authoring a repo/product-level file, glance at the CLAUDE.md **one level above** — what you just established may make parts of it stale or incomplete. If so, offer to actualize it (via claudemd-actualize).
