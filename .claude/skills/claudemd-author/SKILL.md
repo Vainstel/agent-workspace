@@ -60,7 +60,7 @@ No code, class names, schedules, or deep tables here — that's repo level.
 The repo's `CLAUDE.md` is maintained by the team and lives in the repo's git — it's often generic or missing details only an individual developer needs. `CLAUDE.local.md` is the same kind of file, but **personal**: extra details and nuances tied to *this developer's machine and environment* — local run/e2e/infra setup that differs between people, personal dev tokens or creds that don't belong in the shared file (real secrets only as pointers to where they live).
 
 Rules:
-- **Repo level only**, and only next to an existing repo `CLAUDE.md` — it complements it, never replaces it. Shared-worthy facts you discover belong in the team file (propose them), not buried here.
+- **Repo level only.** An existing repo `CLAUDE.md` is NOT required: the team file needs team involvement (an MR, buy-in) and may not exist or be addable at all, while `CLAUDE.local.md` is maintained personally, no MRs — so at repo level the local file is the one to create by default, and if `CLAUDE.md` is missing, *ask* the user whether they want to add it to the repo. When both exist, local complements the team file, never replaces it; shared-worthy facts you discover belong in the team file (propose them), not buried here. (Repo level only — the workspace/org/product levels are personal anyway and stay as described above.)
 - **Never tracked by git.** Before writing it, make sure that repo's own `.gitignore` covers `CLAUDE.local.md`; add the entry if missing.
 - **No volatile content.** No TODOs, task statuses, current-work paths — that churns too fast to keep actualized. Same durable-facts bar as any CLAUDE.md.
 - Same format: H1 + date stamp, short sections, size far under the ceiling.

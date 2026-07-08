@@ -1,5 +1,5 @@
 # Template provenance — lets a future "update from template" flow know the baseline.
 template: agent-workspace
 source: https://github.com/Vainstel/agent-workspace
-template_version: 1.0.3
+template_version: 1.0.4
 initialized: null   # set to YYYY-MM-DD by workspace-manager on first real setup

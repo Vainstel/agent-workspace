@@ -46,10 +46,9 @@ Input: a local path, or a GitHub/GitLab URL (clone it into place once the destin
 2. Tell the user: "I'll analyze it briefly to decide where it fits." Run the analysis — subagents for anything sizable (README, build files, module layout, domain).
 3. Propose placement: match against existing orgs/products; if it clearly belongs, propose that. If ambiguous, ask — offering existing options AND "new product/org" with 2–3 name suggestions. A standalone mono-project may go directly under an org with no product layer (exception — don't invent a product wrapper around a single repo).
 4. Place the repo; update the root `.gitignore` if a new org/product appeared. For a repo that already exists on this machine: **copy, don't move** — leave the original untouched until the user verifies the new location and deletes it themselves. Carry over the local, usually-gitignored setup so the copy stays runnable: IDE settings/run configurations (`.idea/`, `.vscode/`, `*.iml`), local overrides/env files (`.env*`, `*.local.*`, `overrides.properties`), `CLAUDE.local.md` — and mention what you carried over.
-5. CLAUDE.md handling:
-   - Missing → offer to create via `claudemd-author`.
-   - Present but stale/thin (judge by its date stamp and your analysis) → offer `claudemd-actualize`.
-   - Also offer a personal `CLAUDE.local.md` (via `claudemd-author`) when the analysis surfaced env-specific setup details that don't belong in the shared file.
+5. Context-file handling (repo level):
+   - `CLAUDE.local.md` is the default deliverable — create it (via `claudemd-author`) regardless of whether the repo has a `CLAUDE.md`: it's maintained personally, no MRs or team involvement needed.
+   - Repo `CLAUDE.md` is the team's file: if missing, *ask* whether the user wants to add it to the repo (they may not be able to); if present but stale/thin (judge by its date stamp and your analysis) → offer `claudemd-actualize`.
 6. If the repo joins a product whose CLAUDE.md now misses it, actualize that product file too (via the skill) — and per the skill, that's a full re-read of the product file against its new composition, not just an appended mention.
    Authoring order in general is **bottom-up**: repo CLAUDE.md files first, then the product file, then the org file once it has several products — higher levels are written on top of finished lower ones.
 7. **Fresh-session checkpoint.** After ~2–3 repos initialized in one session (analysis + CLAUDE.md / CLAUDE.local.md authoring), tell the user: to keep the context uncluttered and the quality of analysis and authoring high, it's better to continue the remaining repos in a new session (`/init_workspace_manager` there) — contexts of unrelated repos shouldn't mix. Finish the current repo cleanly first.
