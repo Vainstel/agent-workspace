@@ -43,18 +43,7 @@ Lists of orgs/products/repos are deliberately **not** maintained here — they'd
 ## Managing this workspace
 
 Structure work (init org/product, integrate a repo, audit) → the **`workspace-manager`** agent — it's the expert for this. Context files (incl. `CLAUDE.local.md`) → the skills `claudemd-author` / `claudemd-actualize`.
-
-## Git & ignore convention
-
 This workspace repo tracks only: this file, org- and product-level `CLAUDE.md` files, `.claude/` assets, and `tools/`. Repository contents are ignored via a per-org block in `.gitignore`:
-
-```gitignore
-<org>/**
-!<org>/CLAUDE.md
-!<org>/*/
-!<org>/*/CLAUDE.md
-```
-
 When adding an org, copy this block. If a product directory *is itself a git repo* (multi-repo composite), ignore the whole directory instead — its CLAUDE.md is tracked inside that repo.
 
 ## Additional
