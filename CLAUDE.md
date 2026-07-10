@@ -25,7 +25,7 @@ Lists of orgs/products/repos are deliberately **not** maintained here — they'd
 
 ## Auxiliary directories (workspace level only)
 
-- `workflow/` — the **operator's** notes for directing the agent (task briefs in `workflow/task/`, accumulated notes in `workflow/notes/`). Do not enter or mention it unless the user points you to a specific file.
+- `workflow/` — the **operator's** notes for directing the agent (task briefs in `workflow/task/`, accumulated notes in `workflow/notes/`). Do not enter or mention it unless the user points you to a specific file. **One exception — task progress logs.** When working on a specific ticket, check whether `workflow/task/<TICKET>/` exists. If it does, read `progress_log.md` there to see where the task currently stands — and **only** that file: anything else in the directory may be stale, open it only when the user explicitly points to it. If the user gave you a ticket and no such directory exists, create it with a `progress_log.md` and keep that log briefly updated as the work progresses.
 - `TMP/` — scratch. Use freely, create per-task subdirs. When asked to write a doc with no location given or script or report, put it here.
 - `archive/` — retired projects and materials. Stay out.
 - `tools/` — small scripts useful to the user or to you (see `tools/CLAUDE.md`).
